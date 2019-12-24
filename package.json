@@ -1,0 +1,26 @@
+{
+  "name": "webpack-template",
+  "version": "1.0.0",
+  "description": "Webpack 4 Template",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goshanprm/webpack-template.git"
+  },
+  "author": "Egor Batrakov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/goshanprm/webpack-template/issues"
+  },
+  "homepage": "https://github.com/goshanprm/webpack-template#readme",
+  "devDependencies": {
+    "path": "^0.12.7",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
