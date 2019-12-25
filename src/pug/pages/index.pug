@@ -1,0 +1,22 @@
+extends ../layout/main
+
+block variables
+  - var title = 'Webpack + Pug';
+  - var description = 'Description for Webpack + Pug';
+  - var pageClass = 'index-page';
+
+doctype html
+html(lang='ru')
+  head
+    meta(charset='utf-8')
+    title Jade
+  body
+    section
+      .container
+        h1 Jade - node template engine
+        p You are amazing
+        p
+          | Jade is a terse and simple
+          | templating language with a
+          | strong focus on performance
+          | and powerful features.
