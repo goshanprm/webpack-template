@@ -1,6 +1,6 @@
-const webpack =  require('webpack')
+const webpack =  require('webpack');
 
-module.exports = function() {
+module.exports = () => {
   return {
     devtool: 'cheap-module-eval-source-map',
     devServer: {

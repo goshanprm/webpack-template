@@ -1,4 +1,6 @@
-module.exports = function() {
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = () => {
   return {
     module: {
       rules: [
@@ -12,7 +14,7 @@ module.exports = function() {
               options: { sourceMap: true }
             }, {
               loader: 'postcss-loader',
-              options: { sourceMap: true, config: { path: `../postcss.config.js` } }
+              options: { sourceMap: true, config: { path: `./postcss.config.js` } }
             }, {
               loader: 'sass-loader',
               options: { sourceMap: true }
