@@ -1,3 +1,4 @@
+include ../utils/mixins
 block variables
 
 doctype html
@@ -6,14 +7,14 @@ html(lang='ru')
     meta(charset='utf-8')
     title #{title}
     meta(name="description", content=description)
+    block head
 
   body(class=pageClass)
-    section
-      .container
-        h1 Jade - node template engine
-        p You are amazing
-        p
-          | Jade is a terse and simple
-          | templating language with a
-          | strong focus on performance
-          | and powerful features.
+    .wrapper
+      #app
+        include ../includes/header
+        .content-wrapper
+          block content
+        include ../includes/footer
+
+    block script
