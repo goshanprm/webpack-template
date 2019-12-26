@@ -5,6 +5,7 @@ const pug = require('./webpack/pug');
 const babel = require('./webpack/babel');
 const fonts = require('./webpack/fonts');
 const images = require('./webpack/images');
+const sass = require('./webpack/sass');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -46,22 +47,6 @@ const common = merge([
     },
     module: {
       rules: [{
-        test: /\.sass$/,
-        use: [
-          'style-loader',
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: { sourceMap: true }
-          }, {
-            loader: 'postcss-loader',
-            options: { sourceMap: true, config: { path: `./postcss.config.js` } }
-          }, {
-            loader: 'sass-loader',
-            options: { sourceMap: true }
-          }
-        ]
-      }, {
         test: /\.css$/,
         use: [
           'style-loader',
@@ -100,6 +85,7 @@ const common = merge([
   babel(),
   fonts(),
   images(),
+  sass(),
 ]);
 
 module.exports = function(env) {
