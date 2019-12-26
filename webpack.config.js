@@ -1,30 +1,31 @@
 const path = require('path');
 const fs = require('fs');
 const merge = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const pug = require('./webpack/pug');
+const lintJS = require('./webpack/js.lint');
 const babel = require('./webpack/babel');
 const fonts = require('./webpack/fonts');
 const images = require('./webpack/images');
 const sass = require('./webpack/sass');
 const css = require('./webpack/css');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devconfig = require('./webpack/dev.config');
 
 const PATHS = {
   src: path.join(__dirname, './src'),
   dist: path.join(__dirname, './dist'),
-  assets: 'assets/'
+  assets: 'assets/',
 };
 
 const PAGES_DIR = `${PATHS.src}/pug/pages/`;
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'));
+const PAGES = fs.readdirSync(PAGES_DIR).filter((fileName) => fileName.endsWith('.pug'));
 
 const common = merge([
   {
     externals: {
-      paths: PATHS
+      paths: PATHS,
     },
     entry: {
       app: PATHS.src,
@@ -32,7 +33,7 @@ const common = merge([
     output: {
       filename: `${PATHS.assets}js/[name].[hash].js`,
       path: PATHS.dist,
-      publicPath: '/'
+      publicPath: '/',
     },
     optimization: {
       splitChunks: {
@@ -41,15 +42,15 @@ const common = merge([
             name: 'vendors',
             test: /node_modules/,
             chunks: 'all',
-            enforce: true
-          }
-        }
-      }
+            enforce: true,
+          },
+        },
+      },
     },
     resolve: {
       alias: {
         '~': PATHS.src,
-      }
+      },
     },
     plugins: [
       new MiniCssExtractPlugin({
@@ -60,13 +61,14 @@ const common = merge([
         { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
         { from: `${PATHS.src}/static`, to: '' },
       ]),
-      ...PAGES.map(page => new HtmlWebpackPlugin({
+      ...PAGES.map((page) => new HtmlWebpackPlugin({
         template: `${PAGES_DIR}/${page}`,
-        filename: `./${page.replace(/\.pug/,'.html')}`
-      }))
+        filename: `./${page.replace(/\.pug/, '.html')}`,
+      })),
     ],
   },
   pug(),
+  lintJS({ paths: PATHS.src }),
   babel(),
   fonts(),
   images(),
@@ -75,13 +77,11 @@ const common = merge([
 ]);
 
 module.exports = (env) => {
-  if (env === 'production') {
-    return common;
-  }
   if (env === 'development') {
     return merge([
       common,
       devconfig(),
     ]);
   }
+  return common;
 };

@@ -6,3 +6,6 @@ dev:
 
 bld:
 	npm run build
+
+lint:
+	npx eslint .

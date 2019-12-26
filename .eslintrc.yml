@@ -1,0 +1,31 @@
+---
+
+# https://eslint.org/docs/user-guide/configuring#specifying-environments
+env:
+  browser: true
+  commonjs: true
+  es6: true
+  node: true
+
+# https://github.com/babel/babel-eslint
+parser: babel-eslint
+
+plugins:
+  # https://github.com/babel/eslint-plugin-babel
+  - babel
+  # https://github.com/benmosher/eslint-plugin-import
+  - import
+
+extends:
+  - 'airbnb-base'
+
+rules:
+  no-console: 0
+  import/no-extraneous-dependencies: ["error", {"devDependencies": true}]
+
+parserOptions:
+  sourceType: module
+
+globals:
+  $: true
+  jQuery: true
