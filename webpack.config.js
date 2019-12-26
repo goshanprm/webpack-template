@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const pug = require('./webpack/pug');
 const babel = require('./webpack/babel');
 const fonts = require('./webpack/fonts');
+const images = require('./webpack/images');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -45,12 +46,6 @@ const common = merge([
     },
     module: {
       rules: [{
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
-      }, {
         test: /\.sass$/,
         use: [
           'style-loader',
@@ -104,6 +99,7 @@ const common = merge([
   pug(),
   babel(),
   fonts(),
+  images(),
 ]);
 
 module.exports = function(env) {
