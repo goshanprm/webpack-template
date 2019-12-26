@@ -4,8 +4,8 @@
   "description": "Webpack 4 Template",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --config build/webpack.dev.conf.js",
-    "build": "webpack --config build/webpack.build.conf.js"
+    "dev": "webpack-dev-server --open --config webpack/dev.config.js",
+    "build": "webpack --config webpack/build.config.js"
   },
   "browserslist": [
     "> 1%",
