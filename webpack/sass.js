@@ -1,13 +1,13 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import { loader as _loader } from 'mini-css-extract-plugin';
 
-module.exports = () => ({
+export default () => ({
   module: {
     rules: [
       {
         test: /\.sass$/,
         use: [
           'style-loader',
-          MiniCssExtractPlugin.loader,
+          _loader,
           {
             loader: 'css-loader',
             options: { sourceMap: true },

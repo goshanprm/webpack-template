@@ -1,6 +1,6 @@
-const webpack = require('webpack');
+import { SourceMapDevToolPlugin } from 'webpack';
 
-module.exports = () => ({
+export default () => ({
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     port: 8081,
@@ -10,7 +10,7 @@ module.exports = () => ({
     },
   },
   plugins: [
-    new webpack.SourceMapDevToolPlugin({
+    new SourceMapDevToolPlugin({
       filename: '[file].map',
     }),
   ],

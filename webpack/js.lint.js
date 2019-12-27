@@ -1,4 +1,4 @@
-module.exports = ({ paths, options }) => ({
+export default ({ paths, options }) => ({
   module: {
     rules: [
       {
