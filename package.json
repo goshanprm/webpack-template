@@ -4,8 +4,8 @@
   "description": "Webpack 4 Template",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --env development",
-    "build": "webpack"
+    "dev": "webpack-dev-server --open --env development --config-register @babel/register",
+    "build": "webpack --config-register @babel/register"
   },
   "browserslist": [
     "> 1%",
@@ -22,8 +22,11 @@
   },
   "homepage": "https://github.com/goshanprm/webpack-template#readme",
   "devDependencies": {
+    "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.7.7",
     "autoprefixer": "^9.7.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",

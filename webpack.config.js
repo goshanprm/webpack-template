@@ -1,26 +1,26 @@
-const path = require('path');
-const fs = require('fs');
-const merge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const pug = require('./webpack/pug');
-const lintJS = require('./webpack/js.lint');
-const babel = require('./webpack/babel');
-const fonts = require('./webpack/fonts');
-const images = require('./webpack/images');
-const sass = require('./webpack/sass');
-const css = require('./webpack/css');
-const devconfig = require('./webpack/dev.config');
+import { join } from 'path';
+import { readdirSync } from 'fs';
+import merge from 'webpack-merge';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import pug from './webpack/pug';
+import lintJS from './webpack/js.lint';
+import babel from './webpack/babel';
+import fonts from './webpack/fonts';
+import images from './webpack/images';
+import sass from './webpack/sass';
+import css from './webpack/css';
+import devconfig from './webpack/dev.config';
 
 const PATHS = {
-  src: path.join(__dirname, './src'),
-  dist: path.join(__dirname, './dist'),
+  src: join(__dirname, './src'),
+  dist: join(__dirname, './dist'),
   assets: 'assets/',
 };
 
 const PAGES_DIR = `${PATHS.src}/pug/pages/`;
-const PAGES = fs.readdirSync(PAGES_DIR).filter((fileName) => fileName.endsWith('.pug'));
+const PAGES = readdirSync(PAGES_DIR).filter((fileName) => fileName.endsWith('.pug'));
 
 const common = merge([
   {
@@ -76,7 +76,7 @@ const common = merge([
   css(),
 ]);
 
-module.exports = (env) => {
+export default (env) => {
   if (env === 'development') {
     return merge([
       common,
