@@ -1,6 +1,7 @@
 import { join } from 'path';
 import { readdirSync } from 'fs';
 import merge from 'webpack-merge';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -54,6 +55,7 @@ const common = merge([
       },
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: `${PATHS.assets}css/[name].[hash].css`,
       }),
