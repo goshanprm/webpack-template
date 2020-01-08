@@ -16,6 +16,7 @@ import devconfig from './webpack/dev.config';
 const PATHS = {
   src: join(__dirname, './src'),
   dist: join(__dirname, './dist'),
+  img: join(__dirname, './src/pug/includes/*'),
   assets: 'assets/',
 };
 
@@ -58,6 +59,7 @@ const common = merge([
       }),
       new CopyWebpackPlugin([
         { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
+        { from: `${PATHS.img}/*.{svg|jpg|png|gif}`, to: `${PATHS.assets}img/[name].[ext]` },
         { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
         { from: `${PATHS.src}/static`, to: '' },
       ]),
